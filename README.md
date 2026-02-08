@@ -22,6 +22,12 @@ Vehicle-to-Everything (V2X) communication is critical for Intelligent Transporta
 ```text
 V2X-Anomaly-Detection-VAE/
 │
+├── simulation/              <-- NEW FOLDER
+│   ├── gangnam.net.xml      <-- The road network file (OSM import)
+│   ├── traffic.rou.xml      <-- Your route/traffic definitions
+│   ├── config.sumocfg       <-- The main SUMO configuration
+│   └── parse_fcd.py         <-- The script that converts raw SUMO output to your CSV
+│
 ├── src/
 │   ├── model.py         # The proposed VAE-CNN Architecture
 │   ├── baselines.py     # Comparison models (Autoencoder, LSTM)
@@ -35,8 +41,34 @@ V2X-Anomaly-Detection-VAE/
 
 ```
 ---
+## 🚗 Data Generation (SUMO Simulation)
+To ensure reproducibility, this repository includes the full simulation setup used to generate the dataset.
 
-## 🏗️ Architecture
+**Scenario Details:**
+* **Location:** Gangnam District, Seoul (Imported from OpenStreetMap)
+* **Traffic Density:** ~680 vehicles over 1000s simulation time
+* **Collection Logic:** Data is logged only from vehicles within a **500m radius** of the observer vehicle ($V_0$).
+
+**How to Run:**
+1.  Install [SUMO](https://eclipse.dev/sumo/).
+2.  Navigate to the simulation folder:
+    ```bash
+    cd simulation
+    ```
+3.  Run the simulation to generate raw FCD (Floating Car Data):
+    ```bash
+    sumo -c config.sumocfg --fcd-output raw_trace.xml
+    ```
+4. Process the Data
+We use a custom script to parse the XML and apply the **500m communication radius** constraint (matching the paper's methodology).
+
+```bash
+# Convert raw XML to the final training CSV
+python simulation/parse_fcd.py --input simulation/fcd_out.xml --output data/dataset.csv --ego veh0 --radius 500
+```
+---
+
+## 🏗️ Model Architecture
 
 The model processes streaming BSM data using a sliding window mechanism. It utilizes 1D Convolutions to extract features from time-series data (Speed, Acceleration, Position) and a Variational Autoencoder (VAE) to learn the probabilistic distribution of normal driving behavior.
 
