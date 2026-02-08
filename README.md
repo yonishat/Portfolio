@@ -22,16 +22,20 @@ Vehicle-to-Everything (V2X) communication is critical for Intelligent Transporta
 ```text
 V2X-Anomaly-Detection-VAE/
 │
-├── simulation/              <-- NEW FOLDER
-│   ├── gangnam.net.xml      <-- The road network file (OSM import)
-│   ├── traffic.rou.xml      <-- Your route/traffic definitions
-│   ├── config.sumocfg       <-- The main SUMO configuration
-│   └── parse_fcd.py         <-- The script that converts raw SUMO output to your CSV
+├── simulation/              
+│   ├── additional.add.xml
+│   ├── demand.rou.xml
+│   ├── osm.net.xml.gz           
+|   ├── osm.netccfg
+|   ├── osm.passenger.trips.xml
+|   ├── osm.sumocfg
+│   ├── osm.view.xml        
+│   └── parse_fcd.py         
 │
 ├── src/
 │   ├── model.py         # The proposed VAE-CNN Architecture
 │   ├── baselines.py     # Comparison models (Autoencoder, LSTM)
-│   ├── train.py         # Universal training script (supports --model arg)
+│   ├── train.py         # Universal training script 
 │   ├── evaluate.py      # Evaluation & Plotting script
 │   └── utils.py         # Data loading & Smart sliding window logic
 │
