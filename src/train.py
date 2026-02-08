@@ -3,6 +3,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
 from model import Conv_VAE
+from baselines import Autoencoder, VAE_LSTM
 from utils import load_and_preprocess_data, get_dataloaders
 import argparse
 
@@ -19,9 +20,20 @@ def train_model(data_path, epochs=100, batch_size=32, lr=0.001):
     # 1. Prepare Data
     train_df, test_df, _ = load_and_preprocess_data(data_path)
     train_loader, test_loader = get_dataloaders(train_df, test_df, batch_size=batch_size)
-
-    # 2. Initialize Model
-    model = Conv_VAE().to(device)
+    
+    # --- SELECT MODEL BASED ON ARGUMENT ---
+    if model_type == 'vae':
+        model = Conv_VAE().to(device)
+        print("Training Model: VAE-CNN (Proposed)")
+    elif model_type == 'ae':
+        model = Autoencoder().to(device)
+        print("Training Model: Standard Autoencoder (Baseline)")
+    elif model_type == 'lstm':
+        model = VAE_LSTM().to(device)
+        print("Training Model: VAE-LSTM (Baseline)")
+    else:
+        raise ValueError(f"Unknown model type: {model_type}")
+    
     optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=1e-3)
 
     # 3. Training Loop
@@ -72,8 +84,12 @@ def train_model(data_path, epochs=100, batch_size=32, lr=0.001):
     print("Training Complete. Model saved as 'vae_v2x_model.pth'")
 
 if __name__ == "__main__":
-    # Example usage: python src/train.py --data filtered_data.csv
     parser = argparse.ArgumentParser()
     parser.add_argument('--data', type=str, required=True, help='Path to dataset CSV')
+    # Add this new argument:
+    parser.add_argument('--model', type=str, default='vae', choices=['vae', 'ae', 'lstm'], help='Choose model: vae, ae, or lstm')
+    
     args = parser.parse_args()
-    train_model(args.data)
+    
+    # Pass the model type to the train function
+    train_model(args.data, model_type=args.model)
