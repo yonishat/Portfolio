@@ -90,12 +90,12 @@ The proposed VAE-CNN outperforms baseline models, particularly in detecting comp
 
 | Anomaly Type | Model | Precision | Recall | Accuracy | F1-Score | S.F | Inference Time |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Constant Position Offset** | **Ours (VAE-CNN)** | **0.91** | **0.99** | **0.95** | 0.5 | **0.0013s** |
-||VAE-LSTM | 0.8930 |	0.9997 |	0.9640 | 0.94 | 0.5 | 0.0029s |
-||Autoencoder |	0.8467 | 0.9997 | 0.9456 | 0.9168 | 0.6 | 0.0010s |
+| **Constant Position Offset** | **Ours (VAE-CNN)** | **0.91** | **0.99** | **0.97** | **0.95** | 0.5 | **0.0013s** |
+||VAE-LSTM | 0.89 |	0.99 |	0.96 | 0.94 | 0.5 | 0.0029s |
+||Autoencoder |	0.84 | 0.99 | 0.94 | 0.91 | 0.6 | 0.0010s |
 | **Constant Speed Offset** | **Ours (VAE-CNN)** | **0.90** | **0.95** | **0.95** | **0.93** | **0.6** | **0.0014s** |
-||VAE-LSTM | 0.8865 |	0.9357 |	0.9448 | 0.9104 | 0.6 | 0.0034s |
-||Autoencoder |	0.8021 | 0.7338 | 0.8657 | 0.7664 | 0.6 | 0.0014s |
+||VAE-LSTM | 0.88 |	0.93 |	0.94 | 0.91 | 0.6 | 0.0034s |
+||Autoencoder |	0.80 | 0.73 | 0.86 | 0.76 | 0.6 | 0.0014s |
 
 
 Comparison against baseline models (Autoencoder, VAE-LSTM), details available in the full paper.
