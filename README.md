@@ -64,7 +64,7 @@ To ensure reproducibility, this repository includes the full simulation setup us
     sumo -c config.sumocfg --fcd-output raw_trace.xml
     ```
 4. Process the Data
-We use a custom script to parse the XML and apply the **500m communication radius** constraint (matching the paper's methodology).
+We use a custom script to parse the XML and apply the **500m communication radius** constraint.
 
 ```bash
 # Convert raw XML to the final training CSV
