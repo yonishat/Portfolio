@@ -9,9 +9,9 @@
 ## 🚀 Project Overview
 Vehicle-to-Everything (V2X) communication is critical for Intelligent Transportation Systems (ITS), but it is vulnerable to cyberattacks that falsify Basic Safety Messages (BSMs). This repository contains a **lightweight, real-time anomaly detection framework** capable of identifying data injection attacks (e.g., position/speed falsification) on resource-constrained devices like On-Board Units (OBUs).
 
-```figure
+
 ![Figure 1](https://github.com/user-attachments/assets/f339b9d8-5a63-4473-8ad1-730ef4cd6f62)
-```
+
 
 ### Key Features
 * **Hybrid Architecture:** Uses a **1D Convolutional VAE** to capture temporal dependencies with low computational cost.
