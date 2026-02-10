@@ -9,6 +9,9 @@
 ## 🚀 Project Overview
 Vehicle-to-Everything (V2X) communication is critical for Intelligent Transportation Systems (ITS), but it is vulnerable to cyberattacks that falsify Basic Safety Messages (BSMs). This repository contains a **lightweight, real-time anomaly detection framework** capable of identifying data injection attacks (e.g., position/speed falsification) on resource-constrained devices like On-Board Units (OBUs).
 
+![Figure 1](https://github.com/user-attachments/assets/c5c820a2-3d48-4beb-988b-6f88af22b728)
+
+
 ### Key Features
 * **Hybrid Architecture:** Uses a **1D Convolutional VAE** to capture temporal dependencies with low computational cost.
 * **Smart Reshaping:** Custom data pipeline that automatically adjusts input shapes for CNNs `(Batch, Features, Window)` vs. LSTMs `(Batch, Window, Features)`.
@@ -75,6 +78,8 @@ python simulation/parse_fcd.py --input simulation/fcd_out.xml --output data/data
 ## 🏗️ Model Architecture
 
 The model processes streaming BSM data using a sliding window mechanism. It utilizes 1D Convolutions to extract features from time-series data (Speed, Acceleration, Position) and a Variational Autoencoder (VAE) to learn the probabilistic distribution of normal driving behavior.
+
+<img width="1028" height="503" alt="figure 2" src="https://github.com/user-attachments/assets/d320077d-3be5-44fc-88e4-60a3c4272789" />
 
 **Benchmarking**
 We compare our approach against two industry standards:
