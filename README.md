@@ -35,13 +35,13 @@ V2X-Anomaly-Detection-VAE/
 ├── src/
 │   ├── model.py         # The proposed VAE-CNN Architecture
 │   ├── baselines.py     # Comparison models (Autoencoder, LSTM)
-│   ├── train.py         # Universal training script 
-│   ├── evaluate.py      # Evaluation & Plotting script
-│   └── utils.py         # Data loading & Smart sliding window logic
+│   ├── train.py         
+│   ├── evaluate.py      
+│   └── utils.py         
 │
-├── assets/              # Images for README
-├── requirements.txt     # Python dependencies
-└── README.md            # Project Documentation
+├── assets/              
+├── requirements.txt     
+└── README.md            
 
 ```
 ---
